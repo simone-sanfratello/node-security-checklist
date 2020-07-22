@@ -32,11 +32,24 @@ While there isn't any system 100% secure, following common security practices re
   npm audit
   ```
 
-![audit](./img/audit.png)
+  ![audit](./img/audit.png)
 
 - [ ] **Remove information that identify the tech**
 
   For example: `X-Powered-By` header and cookie `sessionid` name may reveal the technologies running on the server and that can address attacks for know vulnerabilities, especially if they are dated.
+
+- [ ] **HTTPS**
+
+  Use https over http to encrypt communication and avoid intermediate network points to sniff transferring data.
+
+  See [MITM attack](https://owasp.org/www-community/attacks/Man-in-the-middle_attack)
+
+- [ ] **Secure cookies**
+
+  - do not store sensitive data in cookies
+  - use `session` cookies
+  - use `HttpOnly`, `SameSite` and `Secure` flags
+  - restrict access to a single domain, without subdomains
 
 - [ ] **Use an helmet**
 
@@ -56,10 +69,10 @@ While there isn't any system 100% secure, following common security practices re
   - [helmet](https://github.com/helmetjs/helmet)
   - [fastify-helmet](https://github.com/fastify/fastify-helmet)
 
-- [ ] **Prevent your application crash**
+- [ ] **Prevent application crash**
 
-  Manage different kind of input from the aspected ones
-  - use `try-catch` blocks for faultable operations. Most for the frameworks do that in route handlers
+  Manage different kind of input from the expected ones
+  - use `try-catch` blocks for faultable operations - most for the frameworks do that in route handlers
 
   - handle `process.unhandledRejection`, log trace to fix the error
 
@@ -89,7 +102,7 @@ While there isn't any system 100% secure, following common security practices re
 
   Use a validation library for inputs, like [ajv](https://github.com/ajv-validator/ajv), [joi](https://github.com/sideway/joi), [superstruct](https://github.com/ianstormtaylor/superstruct) or even better apply a validation schema.
 
-  See [fastify validation](https://www.fastify.io/docs/latest/Validation-and-Serialization/#validation)
+  See [fastify validation](https://www.fastify.io/docs/latest/Validation-and-Serialization/#validation).
 
 - [ ] **Control outputs**
 
@@ -104,22 +117,15 @@ While there isn't any system 100% secure, following common security practices re
   - [he](https://github.com/mathiasbynens/he)
   - [jsesc](https://github.com/mathiasbynens/jsesc)
 
-  See [Improper Output Handling](http://projects.webappsec.org/w/page/13246934/Improper%20Output%20Handling)
+  See [Improper Output Handling](http://projects.webappsec.org/w/page/13246934/Improper%20Output%20Handling).
 
 - [ ] **Control source**
 
   - setup CORS policy properly - most frameworks have a plugin
   - use a [synchronizer token](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html#synchronizer-token-pattern) to checksum the request
-  - use multi-factor authentication for sensible operations (always when involving money).
+  - use multi-factor authentication for sensible operations (always when involving money)
 
   See [CSRF attack](https://owasp.org/www-community/attacks/csrf).
-
-- [ ] **Secure cookies**
-
-  - do not store sensitive data in cookies
-  - use `session` cookies
-  - use `HttpOnly`, `SameSite` and `Secure` flags
-  - restrict access to a single domain, without subdomains
 
 - [ ] **Control request rate**
 
@@ -138,12 +144,6 @@ While there isn't any system 100% secure, following common security practices re
 - [ ] **Control resources**
 
   Avoid the server crash because is out of resources (like disk space and memory) and also tracking regular activities. Monitoring is very different because of the environment (cloud, container, vps, and so on) and method (trace collector, polling queries) but **always** be sure to take under control resources usage and availability. Abnormal traffic is evidence of an attack.
-
-- [ ] **HTTPS**
-
-  Use https over http to encrypt communication and avoid intermediate network points to sniff transferring data.
-
-  See [MITM attack](https://owasp.org/www-community/attacks/Man-in-the-middle_attack)
 
 - [ ] **Test**
 
