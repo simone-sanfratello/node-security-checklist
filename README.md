@@ -71,24 +71,7 @@ While there isn't any system 100% secure, following common security practices re
 
 - [ ] **Prevent application crash**
 
-  Manage different kind of input from the expected ones
-  - use `try-catch` blocks for faultable operations - most for the frameworks do that in route handlers
-
-  - handle `process.unhandledRejection`, log trace to fix the error
-
-  ```js
-  process.on('unhandledRejection', (error, promise) => {
-    log.error({ message: 'process.unhandledRejection', error, promise })
-  })
-  ```
-
-  - handle `process.uncaughtException`, log trace to fix the error
-
-  ```js
-  process.on('uncaughtException', (error) => {
-    log.error({ message: 'uncaughtException', error })
-  })
-  ```
+  Manage different form of input from the expected ones; use `try-catch` blocks for faultable operations - most for the frameworks do that in route handlers
 
 - [ ] **Control inputs**
 
@@ -117,7 +100,7 @@ While there isn't any system 100% secure, following common security practices re
   - [he](https://github.com/mathiasbynens/he)
   - [jsesc](https://github.com/mathiasbynens/jsesc)
 
-  See [Improper Output Handling](http://projects.webappsec.org/w/page/13246934/Improper%20Output%20Handling).
+  See [Improper Output Handling](http://projects.webappsec.org/w/page/13246934/Improper%20Output%20Handling), [XSS attack](https://owasp.org/www-community/attacks/xss).
 
 - [ ] **Control source**
 
