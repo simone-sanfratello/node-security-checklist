@@ -106,7 +106,7 @@ While there isn't any system 100% secure, following common security practices re
 
   - setup CORS policy properly - most frameworks have a plugin
   - use a [synchronizer token](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html#synchronizer-token-pattern) to checksum the request
-  - implement a "blacklist"/"whitelist" to prevent known malicious requests, usually filtering by ip
+  - implement a "blacklist"/"whitelist" to prevent known malicious requests, usually filtering by ip, that can be updated at runtime
   - use multi-factor authentication for sensible operations (always when involving money)
 
   See [CSRF attack](https://owasp.org/www-community/attacks/csrf).
